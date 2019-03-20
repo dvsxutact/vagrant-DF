@@ -1,6 +1,6 @@
 #!/bin/bash
 
-aptitude -y install expect
+sudo -E apt -y -q install expect
 
 // Not required in actual script
 MYSQL_ROOT_PASSWORD=vagrant
@@ -25,4 +25,4 @@ expect eof
 
 echo "$SECURE_MYSQL"
 
-aptitude -y purge expect
+sudo -E apt -y -q purge expect
