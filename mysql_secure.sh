@@ -5,7 +5,7 @@ sudo -E apt -y install expect
 // Not required in actual script
 MYSQL_ROOT_PASSWORD=vagrant
 
-SECURE_MYSQL=$(expect -c "
+SECURE_MYSQL=$(sudo -E expect -c "
 set timeout 10
 spawn mysql_secure_installation
 expect \"Enter current password for root (enter for none):\"
