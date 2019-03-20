@@ -15,7 +15,7 @@ Vagrant.configure(2) do |config|
     override.vm.synced_folder ".", "/vagrant", disabled: true
   end
   
-  scripts = [ "bootstrap.sh", "install-mysql.sh", "mysql_secure.sh", "configure-mysql.sh", "install-dreamfactory.sh" ]
+  scripts = [ "bootstrap.sh", "install-mysql.sh", "mysql_secure.sh", "configure-mysql.sh", "install-dreamfactory.sh", "install-nginx.sh"]
   scripts.each { |script|
     config.vm.provision :shell, privileged: false, :path => "./" << script
   }
