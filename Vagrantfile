@@ -12,7 +12,9 @@ Vagrant.configure(2) do |config|
     override.vm.box = "bento/ubuntu-16.04"
     override.vm.network "private_network", type: "dhcp"
     override.vm.network :forwarded_port, host: 8070, guest: 80 # dreamfactory
+    override.vm.synced_folder ".", "/vagrant", disabled: true
   end
+  
   scripts = [ "bootstrap.sh", "install-mysql.sh", "mysql_secure.sh", "configure-mysql.sh", "install-dreamfactory.sh" ]
   scripts.each { |script|
     config.vm.provision :shell, privileged: false, :path => "./" << script
