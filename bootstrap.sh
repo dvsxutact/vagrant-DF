@@ -38,3 +38,6 @@ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 
 # now install composer.
 php composer-setup.php --install-dir=/home/vagrant/bin --filename=composer
+
+# I believe we can now remove the composer-setup.php, so lets do that now.
+rm -f /home/vagrant/composer-setup.php
