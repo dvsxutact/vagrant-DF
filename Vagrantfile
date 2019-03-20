@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
     # Do not use official Ubuntu box, broken in many ways https://bugs.launchpad.net/cloud-images/+bug/1569237
     override.vm.box = "bento/ubuntu-16.04"
     override.vm.network "private_network", type: "dhcp"
-    override.vm.network :forwarded_port, host: 8080, guest: 80 # dreamfactory
+    override.vm.network :forwarded_port, host: 8070, guest: 80 # dreamfactory
   end
   scripts = [ "bootstrap.sh" ]
   scripts.each { |script|
