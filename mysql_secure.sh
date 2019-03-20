@@ -1,10 +1,14 @@
-#!/bin/bash
+# Make sure that NOBODY can access the server without a password
+sudo -E mysql -e "UPDATE mysql.user SET Password = PASSWORD('vagrant') WHERE User = 'root'"
 
-$DATABASE_PASS='vagrant'
+# Kill the anonymous users
+sudo -E mysql -e "DROP USER ''@'localhost'"
 
-sudo -E mysqladmin -u root password "$DATABASE_PASS"
-sudo -E mysql -u root -p"$DATABASE_PASS" -e "UPDATE mysql.user SET Password=PASSWORD('$DATABASE_PASS') WHERE User='root'"
-sudo -E mysql -u root -p"$DATABASE_PASS" -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')"
-sudo -E mysql -u root -p"$DATABASE_PASS" -e "DELETE FROM mysql.user WHERE User=''"
-sudo -E mysql -u root -p"$DATABASE_PASS" -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\_%'"
-sudo -E mysql -u root -p"$DATABASE_PASS" -e "FLUSH PRIVILEGES"
+# Because our hostname varies we'll use some Bash magic here.
+sudo -E mysql -e "DROP USER ''@'$(hostname)'"
+
+# Kill off the demo database
+sudo -E mysql -e "DROP DATABASE test"
+
+# Make our changes take effect
+sudo -E mysql -e "FLUSH PRIVILEGES"
