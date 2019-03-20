@@ -1,5 +1,5 @@
 # Install nginx
-sudo -E apt install nginx
+sudo -E apt install -y -q nginx
 
 ## move the default config file to a backup.
 sudo -E mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
